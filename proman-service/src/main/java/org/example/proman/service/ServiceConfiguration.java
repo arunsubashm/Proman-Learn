@@ -6,6 +6,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan("org.example.proman.service")
-@EntityScan("com.upgrad.proman.service.entity")
+@EntityScan("org.example.proman.service.entity")
 public class ServiceConfiguration {
 }
