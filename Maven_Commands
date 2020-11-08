@@ -1,0 +1,2 @@
+mvn clean install -Psetup
+mvn clean install -DskipTests
