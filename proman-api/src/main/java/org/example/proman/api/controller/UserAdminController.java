@@ -4,6 +4,7 @@ import org.example.proman.api.model.UserDetailsResponse;
 import org.example.proman.api.model.UserStatusType;
 import org.example.proman.service.business.UserAdminBusinessService;
 import org.example.proman.service.entity.UserEntity;
+import org.example.proman.service.exception.ResourceNotFoundException;
 import org.example.proman.service.type.UserStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class UserAdminController {
     private UserAdminBusinessService userAdminBusinessService;
 
     @RequestMapping(method = RequestMethod.GET, path = "/users/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<UserDetailsResponse> getUser(@PathVariable("id") final String userUuid) {
+    public ResponseEntity<UserDetailsResponse> getUser(@PathVariable("id") final String userUuid) throws ResourceNotFoundException {
         final UserEntity userEntity = userAdminBusinessService.getUser(userUuid);
         UserDetailsResponse userDetailsResponse = new UserDetailsResponse().id(userEntity.getUuid()).firstName(userEntity.getFirstName())
                 .lastName(userEntity.getLastName()).emailAddress(userEntity.getEmail())
